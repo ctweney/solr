@@ -55,10 +55,10 @@ public class SparseIndexingServiceImpl implements IndexingHandler,
   protected TopicIndexer contentIndexer;
   private String[] topics;
 
-  private Map<String, IndexingHandler> indexers = Maps.newConcurrentMap();
-  private IndexingHandler defaultHandler;
+  protected Map<String, IndexingHandler> indexers = Maps.newConcurrentMap();
+  protected IndexingHandler defaultHandler;
   @SuppressWarnings("unchecked")
-  private Map<String, String> ignoreCache = new LRUMap(500);
+  protected Map<String, String> ignoreCache = new LRUMap(500);
   private static final String[] BLACK_LISTED = {
       "/dev/",
       "/devwidgets/",
@@ -164,7 +164,7 @@ public class SparseIndexingServiceImpl implements IndexingHandler,
     return accessControlManager.findPrincipals(zone, path,Permissions.CAN_READ.getPermission(), true);
   }
 
-  private IndexingHandler getHandler(RepositorySession repositorySession, String path) {
+  protected IndexingHandler getHandler(RepositorySession repositorySession, String path) {
     org.sakaiproject.nakamura.api.lite.Session sparseSession = repositorySession
         .adaptTo(org.sakaiproject.nakamura.api.lite.Session.class);
 
@@ -264,7 +264,7 @@ public class SparseIndexingServiceImpl implements IndexingHandler,
     }
   }
 
-  private boolean ignore(String path) {
+  protected boolean ignore(String path) {
     if ( path == null ) {
       return true;
     }
