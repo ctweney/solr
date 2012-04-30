@@ -41,11 +41,6 @@ public class ActivityIndexingServiceImpl extends SparseIndexingServiceImpl {
   private static final Logger LOGGER = LoggerFactory.getLogger(ActivityIndexingServiceImpl.class);
 
   @Override
-  protected boolean ignore(String path) {
-    return super.ignore(path) || !(path.startsWith("act:"));
-  }
-
-  @Override
   protected IndexingHandler getHandler(RepositorySession repositorySession, String path) {
     org.sakaiproject.nakamura.api.lite.Session sparseSession = repositorySession
         .adaptTo(org.sakaiproject.nakamura.api.lite.Session.class);
